@@ -1,0 +1,15 @@
+version: '3.8' 
+networks:
+  main:
+services: 
+  frontend:
+    build: .
+    networks:
+      - main
+    container_name: frontend
+    ports:
+      - 8001:8001
+    command: python manage.py runserver 0.0.0.0:8001
+    volumes:
+      - .:/frontend # Mount the current directory as a volume
+    restart: always

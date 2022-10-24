@@ -1,0 +1,5 @@
+Django==3.2.15
+requests==2.28.1
+django-bootstrap4==22.2
+bootstrap4==0.1.0
+python-dotenv==0.21.0

@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paymob Fraud</title>
+</head>
+<body>
+    <section class="h-100 gradient-form" style="background-color: #eee;display:contents">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="text-center">
+                        <img src="{% static 'Images/paymob_login_logo.png' %}" style="width: 185px;" alt="logo" />
+                        <h4 class="mt-1 mb-5 pb-1">We are Paymob Fraud Team</h4>
+                        <br>
+                      </div>
+                      
+                    </div>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        {% if messages %}
+                          {% for message in messages %}
+                          <li
+                          {% if message.tags == "error" %}
+                          class="{{ message.tags }}" style="color:red;"
+                          {%else%}
+                          class="{{ message.tags }}" style="color:green;"
+                          {% endif %}>
+                          {{ message }}</li>
+                          {% endfor %}
+                        {% endif %}
+                        {% block content1%}
+                        {% endblock %}
+            </div>
+          </div>
+        
+      </section>
+      
+
+</body>{%endblock%}
+</html>
+

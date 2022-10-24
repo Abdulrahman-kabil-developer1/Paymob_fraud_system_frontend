@@ -1,0 +1,93 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{%block content%}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+</head>
+<script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+</script>
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+      integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+<h1 class="text-center"> Transactions</h1>
+    <section class="intro">
+      <div class="gradient-custom-1 h-100">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container" style="overflow: scroll;">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                  
+                  <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
+                      width="100%">
+                      <thead>
+                      <tr >
+                        <th >ID</th>
+                        <th >Status</th>
+                        <th >Amount</th>
+                        <th >Client Name</th>
+                        <th >Client Email</th>
+                        <th >Client Phone</th>
+                        <th >Client Card-Num</th>
+                        <th >Merchant</th>
+                        <th >Rule</th>
+                        <th >Discriptions</th>
+                        <th >Date</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {% for trans in transactions %}
+                        <tr>
+                          <td>{{trans.id}}</td>
+                          {% if trans.transaction_status == True%}
+                            <th scope="row" style="color:green;">Accept</th>
+                          {% elif trans.transaction_status == False %}
+                            <th scope="row" style="color:red;">Refuse</th>
+                          {% endif %}
+                          <td>{{trans.amount}}</td>
+                          <td>{{trans.name}}</td>
+  
+                          <td>{{trans.email}}</td>
+                          <td>{{trans.phone}}</td>
+                          <td>{{trans.card_num}}</td>
+                          <td>{{trans.merchant}}</td>
+                          <td>{{trans.rule}}</td>
+                          <td>{{trans.message}}</td>
+                          <td>{{trans.created_at}}</td>
+  
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script> 
+      {% comment %} create search input in table {% endcomment %} 
+      $(document).ready(function () {
+        $('#dtHorizontalVerticalExample').DataTable({
+          "aaSorting": [],
+          columnDefs: [{
+          orderable: false,
+          targets: 3
+          }]
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
+{% comment %} <script src="{% static 'js/table.js' %}"></script> {% endcomment %}
+
+{% endblock %}
+

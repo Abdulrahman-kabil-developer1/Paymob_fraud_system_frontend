@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{%block content%}
+<h1 class="text-center"> Global Black List</h1>
+    <section class="intro">
+      <div class="gradient-custom-1 h-100">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="table-responsive bg-white">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">C_Name</th>
+                        <th scope="col">C_Email</th>
+                        <th scope="col">C_Phone</th>
+                        <th scope="col">C_Card-Num</th>
+                        <th scope="col">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for record in GBL %}
+                      <tr>
+                        <td>{{record.id}}</td>
+                        <th scope="row" style="color: #666666;">{{record.type}}</th>
+                          {% if record.active == True%}
+                          <th scope="row" style="color:green;">Active</th>
+                          {% elif record.active == False %}
+                          <th scope="row" style="color:red;">Not Active</th>
+                          {% endif %}
+                        <td>{{record.name}}</td>
+                        <td>{{record.email}}</td>
+                        <td>{{record.phone}}</td>
+                        <td>{{record.card_num}}</td>
+                        <td>{{record.created_at}}</td>
+                      </tr>
+                      {% endfor %}
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock%}

@@ -1,0 +1,4 @@
+SECRET_KEY='django-insecure-hpvj#%fx+^&+!sv+c1=_r*x8n+%8n%=s7_5qh)57pc(n9qmxvc'
+DEPUG=True
+BACKEND_URL='paymob-fraud.herokuapp.com'
+GOOGLE_RECAPTCHA_SECRET_KEY='6LcHSuIhAAAAACxcjLrXO1MooBvHe6okElMx_mgu'

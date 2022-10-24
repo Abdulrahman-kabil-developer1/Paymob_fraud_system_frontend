@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paymob Fraud</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css" />
+</head>
+<body>
+  <section class="h-100 gradient-form" style="background-color: #eee;display:contents">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+              <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                  <div class="col-lg-6">
+                    <div class="card-body p-md-5 mx-md-4">
+      
+                      <div class="text-center">
+                        <img src="{% static "Images/paymob_login_logo.png" %}"style="width: 185px;" alt="logo" />
+                        <h4 class="mt-1 mb-5 pb-1">We are Paymob Fraud Team</h4>
+                      </div>
+                      <form method='POST'>
+                        {% csrf_token %}
+                        {% if messages %}
+                          {% for message in messages %}
+                          <li
+                          {% if message.tags == "error" %}
+                          class="{{ message.tags }}" style="color:red;"
+                          {%else%}
+                          class="{{ message.tags }}" style="color:green;"
+                          {% endif %}>
+                          {{ message }}</li>
+                          {% endfor %}
+                      {% endif %}
+                        {%bootstrap_form form%}
+                        {% buttons %}
+                            <script src="https://www.google.com/recaptcha/api.js"></script>
+                            <div class="g-recaptcha" data-sitekey="6LcHSuIhAAAAABGMeZRRYY1opYHCUqnrvsZTcmut"></div>
+                            <br>
+                            <a href="{% url 'transaction:reset_password' %}" style="display:block;">Forgot password.</a>
+                            <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+                            {% comment %} <a class="text-muted" href="{% url 'transaction:logout' %}">Forgot password?</a> {% endcomment %}
+                        {% endbuttons %}
+                        <br>
+                        {{form.errors}}
+                        <br>
+                      </form>
+      
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                      <h4 class="mb-4">We are more than just a company</h4>
+                      <p class="small mb-0">Paymob is a payments service provider that empowers businesses to accept payments however & wherever your clients want to pay - both online and offline.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
+{%endblock%}
+
